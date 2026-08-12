@@ -1,0 +1,148 @@
+<section id="projects" class="section projects-section">
+  <!-- Glowing background blobs -->
+  <div class="projects-glow"></div>
+
+  <div class="container">
+    <div class="projects-header">
+      <span class="eyebrow">Portfolio Works</span>
+      <h2 class="section-title">Featured Engineering Projects</h2>
+      <p class="subtitle">
+        Production-grade systems developed using Angular, Spring Boot, and MySQL. Tap on any project card to review its architectural details and features.
+      </p>
+    </div>
+
+    <!-- Featured Project: HRMS Platform -->
+    <div *ngIf="featuredProject" class="featured-project-container">
+      <div class="featured-label-row">
+        <span class="featured-tag">Primary Highlight</span>
+      </div>
+      
+      <div class="glass-card featured-card">
+        <div class="featured-card-border-glow"></div>
+        <div class="featured-grid">
+          <!-- Left side details -->
+          <div class="featured-details">
+            <span class="featured-role-badge">{{ featuredProject.role }}</span>
+            <h3 class="featured-title">{{ featuredProject.name }}</h3>
+            <p class="featured-desc">{{ featuredProject.description }}</p>
+            
+            <div class="featured-specs">
+              <h4 class="specs-title">Key Modules Developed:</h4>
+              <ul class="specs-list">
+                <li *ngFor="let feat of featuredProject.importantFeatures.slice(0, 3)">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>{{ feat }}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="featured-tech">
+              <span *ngFor="let tech of featuredProject.technologyStack" class="badge tech-badge">
+                {{ tech }}
+              </span>
+            </div>
+
+            <div class="featured-actions">
+              <a [routerLink]="['/project', featuredProject.id]" class="btn btn-primary btn-featured-cta">
+                Explore HRMS Case Study
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="action-arrow-icon">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right side: Technical Architecture Preview Grid -->
+          <div class="featured-visual-pane">
+            <div class="tech-stack-visual">
+              <div class="visual-header">
+                <div class="visual-dots-group">
+                  <span class="visual-dot red"></span>
+                  <span class="visual-dot yellow"></span>
+                  <span class="visual-dot green"></span>
+                </div>
+                <span class="visual-label">deployment_architecture.yaml</span>
+              </div>
+              <div class="visual-body">
+                <!-- Mini mock-up box representing architecture -->
+                <div class="arch-layer">
+                  <div class="layer-pill angular">Angular SPA</div>
+                </div>
+                <div class="arch-connector">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="conn-arrow">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                  </svg>
+                </div>
+                <div class="arch-layer">
+                  <div class="layer-pill spring">Spring Security / JWT</div>
+                </div>
+                <div class="arch-connector">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="conn-arrow">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                  </svg>
+                </div>
+                <div class="arch-layer">
+                  <div class="layer-pill boot">Spring Boot API</div>
+                </div>
+                <div class="arch-connector">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="conn-arrow">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                  </svg>
+                </div>
+                <div class="arch-layer">
+                  <div class="layer-pill mysql">MySQL Database</div>
+                </div>
+                <div class="aws-env-label">AWS EC2 Hosted</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid of other projects -->
+    <div class="other-projects-grid">
+      <div *ngFor="let proj of otherProjects" class="glass-card project-card">
+        <div class="project-card-border-edge"></div>
+        <div class="project-card-content">
+          <!-- Top repository icon indicator -->
+          <div class="card-repo-header">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon">
+              <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path>
+            </svg>
+            <span class="tech-icon-decor">&lt;code/&gt;</span>
+          </div>
+
+          <span class="project-role-tag">{{ proj.role }}</span>
+          <h3 class="project-title">{{ proj.name }}</h3>
+          <p class="project-description">{{ proj.shortDescription }}</p>
+          
+          <div class="project-tech-list">
+            <span *ngFor="let tech of proj.technologyStack.slice(0, 4)" class="badge tech-badge">
+              {{ tech }}
+            </span>
+            <span *ngIf="proj.technologyStack.length > 4" class="badge tech-badge plus-badge">
+              +{{ proj.technologyStack.length - 4 }}
+            </span>
+          </div>
+        </div>
+
+        <div class="project-card-footer">
+          <a [routerLink]="['/project', proj.id]" class="btn btn-secondary btn-card-action">
+            View Details
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="card-arrow">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,380 @@
+<div class="project-detail-page" *ngIf="project() as proj">
+  <!-- Top Navigation & Back Action -->
+  <div class="container back-nav-container">
+    <a routerLink="/" class="back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="back-arrow-icon">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Dashboard
+    </a>
+  </div>
+
+  <!-- Project Hero Banner -->
+  <section class="project-hero-section">
+    <div class="project-hero-glow"></div>
+    <div class="container hero-inner-container">
+      <span class="eyebrow project-eyebrow">Case Study &amp; Technical Specs</span>
+      <h1 class="project-main-title">{{ proj.name }}</h1>
+      <div class="project-meta-row">
+        <span class="meta-tag role-tag">Role: {{ proj.role }}</span>
+        <span class="meta-tag tech-length">{{ proj.technologyStack.length }} Technologies</span>
+      </div>
+      <div class="project-tech-badges">
+        <span *ngFor="let tech of proj.technologyStack" class="badge tech-badge highlighted">
+          {{ tech }}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DYNAMIC TEMPLATE: CASE STUDY IS ENABLED -->
+  <div *ngIf="proj.caseStudyEnabled && proj.caseStudy as cs" class="case-study-container">
+    
+    <!-- Section 1: Overview, Problem & Solution -->
+    <section class="section study-intro-section">
+      <div class="container">
+        <div class="grid-3 study-intro-grid">
+          <!-- Overview Card -->
+          <div class="glass-card intro-card">
+            <div class="card-glow-edge"></div>
+            <h3 class="intro-card-title text-gradient-primary">01 — Overview</h3>
+            <p class="intro-card-text">{{ cs.overview }}</p>
+          </div>
+          <!-- Problem Card -->
+          <div class="glass-card intro-card alert-danger-border">
+            <div class="card-glow-edge danger-glow"></div>
+            <h3 class="intro-card-title error-text">02 — The Problem</h3>
+            <p class="intro-card-text">{{ cs.problem }}</p>
+          </div>
+          <!-- Solution Card -->
+          <div class="glass-card intro-card alert-success-border">
+            <div class="card-glow-edge success-glow"></div>
+            <h3 class="intro-card-title success-text">03 — The Solution</h3>
+            <p class="intro-card-text">{{ cs.solution }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive Tiered Architecture Visual -->
+    <section class="section study-architecture-section">
+      <div class="container">
+        <div class="section-heading-block">
+          <span class="eyebrow">04 — System Architecture</span>
+          <h2 class="section-title">Decoupled Multi-Tier System Design</h2>
+          <p class="subtitle">{{ cs.architectureDescription }}</p>
+        </div>
+
+        <!-- Tiered Architectural Diagram -->
+        <div class="glass-card architecture-diagram-card">
+          <div class="diagram-grid">
+            
+            <!-- Tier 1: Client/Frontend (Angular) -->
+            <div class="diagram-tier">
+              <div class="tier-label">Client Layer</div>
+              <div class="tier-box client-box">
+                <span class="tier-box-title">Angular Single Page Application</span>
+                <span class="tier-box-sub">TypeScript / RxJS / CSS Modules</span>
+                <div class="box-micro-components">
+                  <span class="micro-badge">Route Guards</span>
+                  <span class="micro-badge">HTTP Interceptors</span>
+                  <span class="micro-badge">Directives</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="diagram-connector">
+              <div class="conn-line-h">
+                <span class="conn-pulse"></span>
+              </div>
+              <span class="conn-description">HTTPS / JSON</span>
+            </div>
+
+            <!-- Tier 2: Security & Authentication (JWT Gate) -->
+            <div class="diagram-tier">
+              <div class="tier-label">Security Gateway</div>
+              <div class="tier-box security-box">
+                <span class="tier-box-title">Spring Security Filter Chain</span>
+                <span class="tier-box-sub">JWT Token Validation &amp; Auth Handlers</span>
+                <div class="box-micro-components">
+                  <span class="micro-badge">Dynamic Roles</span>
+                  <span class="micro-badge">Endpoint Encryption</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="diagram-connector">
+              <div class="conn-line-h">
+                <span class="conn-pulse"></span>
+              </div>
+              <span class="conn-description">Authorized Route</span>
+            </div>
+
+            <!-- Tier 3: Business Logic (Spring Boot APIs) -->
+            <div class="diagram-tier">
+              <div class="tier-label">Application Layer</div>
+              <div class="tier-box app-box">
+                <span class="tier-box-title">Spring Boot RESTful Application</span>
+                <span class="tier-box-sub">Controller → Service → Repository Beans</span>
+                <div class="box-micro-components">
+                  <span class="micro-badge">Hibernate ORM</span>
+                  <span class="micro-badge">Spring AI Hooks</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="diagram-connector">
+              <div class="conn-line-h">
+                <span class="conn-pulse"></span>
+              </div>
+              <span class="conn-description">Optimized SQL</span>
+            </div>
+
+            <!-- Tier 4: Storage Layer (MySQL) -->
+            <div class="diagram-tier">
+              <div class="tier-label">Database Layer</div>
+              <div class="tier-box db-box">
+                <span class="tier-box-title">MySQL Relational Cluster</span>
+                <span class="tier-box-sub">Normalized Schemas &amp; Stored Procedures</span>
+                <div class="box-micro-components">
+                  <span class="micro-badge">Selective Indexes</span>
+                  <span class="micro-badge">Date Partitions</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Integration channels footer box -->
+          <div class="diagram-integrations-row">
+            <div class="integration-branch-line"></div>
+            <div class="integrations-container">
+              <div class="integration-box whatsapp">
+                <span class="int-title">WhatsApp API Integration</span>
+                <span class="int-desc">Real-time leave updates &amp; alerts</span>
+              </div>
+              <div class="integration-box email">
+                <span class="int-title">JavaMail SMTP Gateway</span>
+                <span class="int-desc">Auto-payslip distributions</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="aws-diagram-border">
+            <span>Hosted Container: Amazon Web Services (AWS EC2 Instance / Nginx Reverse Proxy)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Major Modules Developed -->
+    <section class="section study-modules-section">
+      <div class="container">
+        <div class="section-heading-block">
+          <span class="eyebrow">05 — Functional Specifications</span>
+          <h2 class="section-title">Major Modules Developed</h2>
+        </div>
+        <div class="grid-2 modules-details-grid">
+          <div *ngFor="let mod of cs.modules" class="glass-card module-spec-card">
+            <div class="card-glow-edge"></div>
+            <h3 class="mod-spec-title text-gradient-primary">{{ mod.name }}</h3>
+            <p class="mod-spec-desc">{{ mod.description }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Security & Database deep dives -->
+    <section class="section study-details-section">
+      <div class="container">
+        <div class="grid-2 details-deep-grid">
+          <!-- Security Block -->
+          <div class="glass-card deep-dive-card">
+            <div class="card-glow-edge"></div>
+            <h3 class="deep-dive-title">06 — Authentication &amp; Authorization</h3>
+            <p class="deep-dive-text">{{ cs.securityDescription }}</p>
+            <div class="info-terminal">
+              <div class="terminal-header">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+              </div>
+              <div class="terminal-body">
+                <span class="terminal-line"><span class="t-key">&#64;PreAuthorize</span>(<span class="t-str">"hasRole('ADMIN')"</span>)</span>
+                <span class="terminal-line"><span class="t-var">public</span> ResponseEntity&lt;Payroll&gt; runPayroll(...) &#123;...&#125;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Database & SQL Block -->
+          <div class="glass-card deep-dive-card">
+            <div class="card-glow-edge"></div>
+            <h3 class="deep-dive-title">07 — Relational Database Design</h3>
+            <p class="deep-dive-text">{{ cs.databaseDesign }}</p>
+            <div class="info-terminal">
+              <div class="terminal-header">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+              </div>
+              <div class="terminal-body">
+                <span class="terminal-line"><span class="t-key">CREATE INDEX</span> idx_attendance_user_date <span class="t-key">ON</span> attendance_logs(user_id, log_date);</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Performance & Optimizations -->
+    <section class="section study-optimization-section">
+      <div class="container">
+        <div class="section-heading-block">
+          <span class="eyebrow">08 — Performance Engineering</span>
+          <h2 class="section-title">Performance Optimizations</h2>
+        </div>
+        <div class="glass-card optimization-details-card">
+          <div class="card-glow-edge"></div>
+          <ul class="optimizations-list">
+            <li *ngFor="let opt of cs.performanceOptimization" class="opt-item">
+              <div class="opt-bullet">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lightning-icon">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </div>
+              <p class="opt-text">{{ opt }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Integrations & Cloud Deployment -->
+    <section class="section study-deployment-section">
+      <div class="container">
+        <div class="grid-2 deployment-grid">
+          <!-- Integrations -->
+          <div class="glass-card deploy-card">
+            <div class="card-glow-edge"></div>
+            <h3 class="deploy-card-title text-gradient-primary">09 — External Integrations</h3>
+            <ul class="deploy-bullets">
+              <li *ngFor="let int of cs.externalIntegrations">{{ int }}</li>
+            </ul>
+          </div>
+          <!-- AWS Deployment -->
+          <div class="glass-card deploy-card">
+            <div class="card-glow-edge"></div>
+            <h3 class="deploy-card-title text-gradient-primary">10 — AWS Cloud Deployment</h3>
+            <ul class="deploy-bullets">
+              <li *ngFor="let dep of cs.awsDeployment">{{ dep }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Challenges & Solutions -->
+    <section class="section study-challenges-section">
+      <div class="container">
+        <div class="section-heading-block">
+          <span class="eyebrow">11 — Technical Resolutions</span>
+          <h2 class="section-title">Challenges &amp; Solutions</h2>
+        </div>
+        <div class="challenges-list">
+          <div *ngFor="let chall of cs.challenges; let i = index" class="glass-card challenge-resolution-box">
+            <div class="card-glow-edge"></div>
+            <div class="chall-header">
+              <span class="chall-num">Challenge 0{{ i + 1 }}</span>
+            </div>
+            <div class="chall-grid">
+              <div class="chall-side">
+                <h4 class="chall-subtitle error-text">The Challenge</h4>
+                <p class="chall-desc">{{ chall.problem }}</p>
+              </div>
+              <div class="chall-side success-border-left">
+                <h4 class="chall-subtitle success-text">The Solution</h4>
+                <p class="chall-desc">{{ chall.solution }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Results & Outcomes -->
+    <section class="section study-results-section">
+      <div class="container">
+        <div class="glass-card results-box-card">
+          <div class="card-glow-edge success-glow"></div>
+          <div class="results-heading-block">
+            <span class="eyebrow">12 — System Outcomes</span>
+            <h2 class="section-title">Outcomes &amp; Results</h2>
+          </div>
+          <div class="grid-3 results-stats-grid">
+            <div *ngFor="let res of cs.results" class="stat-box">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="stat-check-icon">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <p class="stat-text">{{ res }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- DYNAMIC TEMPLATE: STANDARD DETAILS (FOR OTHER PROJECTS) -->
+  <div *ngIf="!proj.caseStudyEnabled" class="standard-detail-container">
+    <section class="section standard-overview-section">
+      <div class="container">
+        <div class="grid-2 standard-details-grid">
+          <!-- Overview & Stack -->
+          <div class="glass-card std-overview-card">
+            <div class="card-glow-edge"></div>
+            <h3 class="std-section-title text-gradient-primary">Project Overview</h3>
+            <p class="std-description">{{ proj.description }}</p>
+            
+            <h4 class="std-sub-title">Technology Stack:</h4>
+            <div class="std-badges-list">
+              <span *ngFor="let tech of proj.technologyStack" class="badge tech-badge highlighted">
+                {{ tech }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Features & Roles -->
+          <div class="glass-card std-features-card">
+            <div class="card-glow-edge"></div>
+            <h3 class="std-section-title text-gradient-primary">Key Features Developed</h3>
+            <ul class="std-features-list">
+              <li *ngFor="let feat of proj.importantFeatures" class="std-feature-item">
+                <div class="bullet-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="bullet-icon-svg">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </div>
+                <span class="std-feature-text">{{ feat }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- Resume CTA Footer Section -->
+  <section class="section project-detail-footer">
+    <div class="container text-center-wrapper">
+      <h3 class="cta-banner-text">Want to review another project?</h3>
+      <a routerLink="/" class="btn btn-secondary">
+        Return to Dashboard
+      </a>
+    </div>
+  </section>
+
+</div>

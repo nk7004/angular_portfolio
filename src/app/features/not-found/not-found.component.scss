@@ -1,0 +1,109 @@
+.not-found-section {
+  min-height: calc(100vh - 136px); /* Height minus navbar/footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+  background-color: var(--bg-primary);
+}
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 600px;
+}
+
+.technical-decor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.code-tag {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.error-code {
+  font-size: clamp(5rem, 15vw, 8rem);
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0.5rem 0;
+  letter-spacing: -0.05em;
+  filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.15));
+}
+
+.not-found-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.error-description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+
+/* Console simulation box */
+.console-box {
+  width: 100%;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-align: left;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--shadow-sm);
+  max-width: 500px;
+}
+
+.console-line {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.console-line:last-child {
+  margin-bottom: 0;
+}
+
+.console-line .prompt {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.console-line.success {
+  color: var(--success);
+}
+
+.console-line.error {
+  color: var(--danger);
+}
+
+.btn-arrow-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--transition-fast);
+}
+
+.btn:hover .btn-arrow-icon {
+  transform: translateX(4px);
+}

@@ -1,0 +1,192 @@
+.about-section {
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+  position: relative;
+  z-index: 2;
+}
+
+/* Background Blobs for Visual Interest */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.08;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+[data-theme="light"] .blob {
+  opacity: 0.03;
+}
+
+.blob-1 {
+  width: 350px;
+  height: 350px;
+  background-color: var(--primary);
+  top: 15%;
+  left: -5%;
+}
+
+.blob-2 {
+  width: 450px;
+  height: 450px;
+  background-color: var(--secondary);
+  bottom: 15%;
+  right: -10%;
+}
+
+.about-header-grid {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 5rem;
+  align-items: center;
+}
+
+/* Editorial quote panel for summary */
+.summary-editorial-quote {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.summary-editorial-quote::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: var(--radius-full);
+}
+
+.about-summary-text {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="light"] .about-summary-text {
+  color: var(--text-secondary);
+}
+
+/* Capabilities Grid - 2x2 */
+.capabilities-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .capabilities-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Capability Card Upgrade */
+.capability-card {
+  position: relative;
+  overflow: hidden;
+  padding: 2.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cap-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.cap-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.cap-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-accent-trans);
+  color: var(--primary);
+  border: 1px solid var(--border-glow);
+  flex-shrink: 0;
+  transition: var(--transition-normal);
+}
+
+.cap-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.capability-card:hover .cap-icon-box {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+}
+
+.cap-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.cap-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+/* Skill Tags inside cards */
+.cap-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.25rem;
+  margin-top: auto;
+  transition: border-color var(--transition-normal);
+}
+
+.capability-card:hover .cap-techs {
+  border-color: var(--border-glow);
+}
+
+.cap-tech-badge {
+  padding: 0.25rem 0.65rem;
+  font-size: 0.725rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  transition: var(--transition-fast);
+}
+
+.capability-card:hover .cap-tech-badge {
+  border-color: rgba(59, 130, 246, 0.2);
+  color: var(--text-primary);
+}
+
+.capability-card:hover .cap-tech-badge:hover {
+  border-color: var(--primary);
+  background-color: var(--bg-accent-trans);
+  color: var(--primary);
+}

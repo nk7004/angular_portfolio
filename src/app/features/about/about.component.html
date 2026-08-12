@@ -1,0 +1,46 @@
+<section id="about" class="section about-section">
+  <!-- Glowing background details -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="container">
+    <div class="grid-2 about-header-grid">
+      <div class="header-left-pane">
+        <span class="eyebrow">About Me</span>
+        <h2 class="section-title">Engineering Scalable, Secure &amp; Modern Web Applications</h2>
+      </div>
+      <div class="header-right-pane">
+        <div class="summary-editorial-quote">
+          <p class="about-summary-text">
+            {{ summary }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Capabilities Cards Grid -->
+    <div class="capabilities-grid">
+      <div *ngFor="let cap of capabilities" class="glass-card capability-card">
+        <div class="cap-card-border-glow"></div>
+        <div class="cap-card-content">
+          <div class="cap-header">
+            <div class="cap-icon-box">
+              <svg class="cap-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path [attr.d]="cap.iconPath" />
+              </svg>
+            </div>
+            <h3 class="cap-title">{{ cap.title }}</h3>
+          </div>
+          <p class="cap-description">{{ cap.description }}</p>
+          
+          <!-- Skill Tags inside cards -->
+          <div class="cap-techs">
+            <span *ngFor="let tech of cap.techs" class="badge cap-tech-badge">
+              {{ tech }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

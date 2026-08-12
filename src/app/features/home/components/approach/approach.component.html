@@ -1,0 +1,23 @@
+<section id="approach" class="section approach-section">
+  <div class="container">
+    <div class="approach-header">
+      <span class="eyebrow">Methodology</span>
+      <h2 class="section-title">How I Build Software</h2>
+      <p class="subtitle">
+        A structured, production-ready engineering lifecycle focused on quality, security, performance, and successful cloud delivery.
+      </p>
+    </div>
+
+    <!-- Step Grid Layout -->
+    <div class="approach-grid grid-3">
+      <div *ngFor="let step of steps" class="glass-card step-card">
+        <div class="step-num-row">
+          <span class="step-number text-gradient-primary">{{ step.stepNumber }}</span>
+          <div class="step-line-decoration"></div>
+        </div>
+        <h3 class="step-title">{{ step.title }}</h3>
+        <p class="step-description">{{ step.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

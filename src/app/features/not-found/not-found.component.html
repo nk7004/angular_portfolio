@@ -1,0 +1,31 @@
+<section class="not-found-section">
+  <div class="container not-found-container">
+    <div class="technical-decor">
+      <span class="code-tag">&lt;error&gt;</span>
+      <h1 class="error-code">404</h1>
+      <span class="code-tag">&lt;/error&gt;</span>
+    </div>
+
+    <div class="not-found-content">
+      <h2 class="error-heading">Page Not Found</h2>
+      <p class="error-description">
+        The route you are looking for does not exist or has been relocated within the system.
+      </p>
+      
+      <div class="console-box">
+        <p class="console-line"><span class="prompt">$</span> git checkout main</p>
+        <p class="console-line success">Switched to branch 'main'</p>
+        <p class="console-line"><span class="prompt">$</span> npm run start --portfolio</p>
+        <p class="console-line error">Error: Route unresolved. Redirecting to home recommended...</p>
+      </div>
+
+      <a routerLink="/" class="btn btn-primary">
+        Back to Dashboard
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow-icon">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

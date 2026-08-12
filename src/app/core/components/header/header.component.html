@@ -1,0 +1,88 @@
+<header class="navbar" [ngClass]="{ 'scrolled': isScrolled() }">
+  <div class="container nav-container">
+    <!-- Brand Name / Logo -->
+    <a href="#" (click)="navigateToHome(); $event.preventDefault();" class="logo" aria-label="Nitish Kumar Portfolio Home">
+      <span class="logo-text">{{ name }}</span>
+      <span class="logo-dot">.</span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="desktop-nav" aria-label="Desktop Navigation">
+      <ul class="nav-list">
+        <li *ngFor="let item of navItems">
+          <a [href]="'#' + item.id" 
+             (click)="handleNavItemClick(item.id, $event)" 
+             [ngClass]="{ 'active': scrollService.activeSection() === item.id }"
+             class="nav-link">
+            {{ item.label }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Header Actions (Theme Toggle + Resume CTA + Mobile Burger) -->
+    <div class="nav-actions">
+      <!-- Theme Toggle Button -->
+      <button (click)="themeService.toggleTheme()" 
+              class="theme-toggle-btn" 
+              [attr.aria-label]="themeService.isDark() ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+              title="Toggle Theme">
+        <!-- Sun Icon (visible in Dark mode) -->
+        <svg *ngIf="themeService.isDark()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sun">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+        </svg>
+        <!-- Moon Icon (visible in Light mode) -->
+        <svg *ngIf="!themeService.isDark()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-moon">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </button>
+
+      <!-- Resume Download CTA -->
+      <a href="Nitish_Kumar_Resume.pdf" download="Nitish_Kumar_Resume.pdf" class="btn btn-secondary btn-nav-resume" target="_blank" rel="noopener noreferrer">
+        Resume
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-download">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button (click)="toggleMobileMenu()" 
+              class="mobile-menu-btn" 
+              [attr.aria-expanded]="isMobileMenuOpen()" 
+              aria-label="Toggle Mobile Menu">
+        <svg *ngIf="!isMobileMenuOpen()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="burger-icon">
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+        <svg *ngIf="isMobileMenuOpen()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="burger-icon">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Overlay & Drawer Menu -->
+  <div class="mobile-overlay" [ngClass]="{ 'open': isMobileMenuOpen() }" (click)="closeMobileMenu()"></div>
+  <div class="mobile-drawer" [ngClass]="{ 'open': isMobileMenuOpen() }" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+    <nav class="mobile-nav">
+      <ul class="mobile-nav-list">
+        <li *ngFor="let item of navItems">
+          <a [href]="'#' + item.id" 
+             (click)="handleNavItemClick(item.id, $event)" 
+             [ngClass]="{ 'active': scrollService.activeSection() === item.id }"
+             class="mobile-nav-link">
+            {{ item.label }}
+          </a>
+        </li>
+        <li class="mobile-resume-li">
+          <a href="Nitish_Kumar_Resume.pdf" download="Nitish_Kumar_Resume.pdf" class="btn btn-primary w-full" target="_blank" rel="noopener noreferrer">
+            Download Resume
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
